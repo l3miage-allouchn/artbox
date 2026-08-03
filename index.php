@@ -1,6 +1,9 @@
 <?php
     require 'header.php';
-    require 'oeuvres.php';
+    require 'bdd.php';
+
+    $pdo = connexion();
+    $oeuvres = $pdo->query('SELECT * FROM oeuvres')->fetchAll();
 ?>
 <div id="liste-oeuvres">
     <?php foreach($oeuvres as $oeuvre): ?>
