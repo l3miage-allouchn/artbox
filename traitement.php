@@ -1,12 +1,13 @@
 <?php
     require 'header.php';
-    require 'bdd.php'; 
+    require 'bdd.php';
 
     $titre = trim($_POST['titre'] ?? '');
     $artiste = trim($_POST['artiste'] ?? '');
     $image = trim($_POST['image'] ?? '');
     $description = trim($_POST['description'] ?? '');
 
+    // les regles demandees par l'exercice : rien de vide, description un minimum longue, image en vraie url https
     $erreurs = [];
 
     if ($titre === '') {
@@ -25,6 +26,7 @@
         $erreurs[] = 'Le lien de l\'image doit commencer par https://.';
     }
 
+    // s'il y a au moins une erreur on affiche et on arrete tout, pas d'insertion en bdd
     if (!empty($erreurs)) {
         echo '<ul class="erreurs">';
         foreach ($erreurs as $erreur) {
@@ -36,6 +38,7 @@
     }
     $pdo = connexion();
     $stmt = $pdo-> prepare('INSERT INTO oeuvres (titre, artiste, image, description) VALUES (?, ?, ?, ?)');
+    // htmlspecialchars avant l'insertion pour qu'un titre/description avec du code html/js ne s'execute jamais quand on l'affiche
     $stmt->execute([
         htmlspecialchars($titre),
         htmlspecialchars($artiste),

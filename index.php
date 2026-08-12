@@ -2,6 +2,7 @@
     require 'header.php';
     require 'bdd.php';
 
+    // on recupere toutes les oeuvres direct depuis la bdd, plus besoin du tableau php en dur
     $pdo = connexion();
     $oeuvres = $pdo->query('SELECT * FROM oeuvres')->fetchAll();
 ?>

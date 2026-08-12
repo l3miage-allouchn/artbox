@@ -5,10 +5,11 @@
     // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     if(empty($_GET['id'])) {
         header('Location: index.php');
-        exit;
+        exit; // sans exit le script continue quand meme et plante plus bas
     }
 
     $pdo = connexion();
+    // requete preparee car l'id vient de l'utilisateur (l'url), jamais de sql brut avec une valeur externe
     $stmt = $pdo->prepare('SELECT * FROM oeuvres WHERE id = ?');
     $stmt->execute([intval($_GET['id'])]);
     $oeuvre = $stmt->fetch();
