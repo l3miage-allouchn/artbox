@@ -66,6 +66,8 @@ mv "/c/Users/allouchn/OpenClassroom/artbox" "/c/xampp/htdocs/artbox"
 - redirection vers l'accueil après l'insertion
 - testé en soumettant le formulaire : la nouvelle œuvre apparaît bien sur la page d'accueil
 
-## Ce qu'il reste à faire
-- remplir la fiche d'auto-évaluation OpenClassrooms
+## Session de mentorat - corrections
+- **Connexion BDD** : ajout d'un `try/catch` dans `bdd.php` pour éviter d'afficher une erreur brute si la connexion échoue
+- **Erreurs du formulaire** : avant, l'utilisateur était éjecté du formulaire en cas d'erreur. Maintenant, `traitement.php` redirige vers `ajouter.php?erreur=type`, et le message s'affiche au-dessus du formulaire qui reste visible qui permet a l'utilisateur de corriger son erreur 
+
 
