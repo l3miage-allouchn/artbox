@@ -1,5 +1,18 @@
 <?php require 'header.php'; ?>
 
+<?php // isset() verifie si une variable existe et n'est pas null. ?>
+<?php if (isset($_GET['erreur'])): ?>
+    <?php if ($_GET['erreur'] === 'titre'): ?>
+        <p class="erreur">Le titre est obligatoire.</p>
+    <?php elseif ($_GET['erreur'] === 'artiste'): ?>
+        <p class="erreur">L'artiste est obligatoire.</p>
+    <?php elseif ($_GET['erreur'] === 'description'): ?>
+        <p class="erreur">La description doit faire au moins 3 caractères.</p>
+    <?php elseif ($_GET['erreur'] === 'image'): ?>
+        <p class="erreur">Le lien de l'image doit commencer par https://.</p>
+    <?php endif; ?>
+<?php endif; ?>
+
 <form action="traitement.php" method="POST">
     <div class="champ-formulaire">
         <label for="titre">Titre de l'œuvre</label>
